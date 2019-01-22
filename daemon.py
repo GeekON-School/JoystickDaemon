@@ -7,10 +7,15 @@ AXIS_X = 0
 AXIS_Y = 3
 BUTTON_A = 0  # E
 BUTTON_B = 1  # space
+BUTTON_C = 2  # R
+BUTTON_D = 3  # Q
+BUTTON_E = 4  # F
+BUTTON_F = 5  # Z
 HOLD_TIME = 120
 
-buttons = {BUTTON_A: False, BUTTON_B: False}
+buttons = {BUTTON_A: False, BUTTON_B: False, BUTTON_C: False, BUTTON_D: False, BUTTON_E: False, BUTTON_F: False}
 wasd = {"w": [0, False], "a": [0, False], "s": [0, False], "d": [0, False]}
+
 
 def process_wasd():
     global wasd
@@ -21,6 +26,7 @@ def process_wasd():
         elif not wasd[k][1] and int(round(time.time() * 1000)) - wasd[k][0] < HOLD_TIME:
             wasd[k][1] = True
             pyautogui.keyDown(k)
+
 
 def loophandler(joy):
     global buttons
@@ -44,6 +50,18 @@ def loophandler(joy):
                 if not buttons[BUTTON_B] and joy.get_button(BUTTON_B):
                     buttons[BUTTON_B] = True
                     pyautogui.keyDown('space')  # todo
+                if not buttons[BUTTON_C] and joy.get_button(BUTTON_C):
+                    buttons[BUTTON_C] = True
+                    pyautogui.keyDown('r')  # todo
+                if not buttons[BUTTON_D] and joy.get_button(BUTTON_D):
+                    buttons[BUTTON_D] = True
+                    pyautogui.keyDown('q')  # todo
+                if not buttons[BUTTON_E] and joy.get_button(BUTTON_E):
+                    buttons[BUTTON_E] = True
+                    pyautogui.keyDown('f')  # todo
+                if not buttons[BUTTON_F] and joy.get_button(BUTTON_F):
+                    buttons[BUTTON_F] = True
+                    pyautogui.keyDown('z')  # todo
             elif e.type == pygame.locals.JOYBUTTONUP:
                 if buttons[BUTTON_A] and not joy.get_button(BUTTON_A):
                     buttons[BUTTON_A] = False
@@ -51,6 +69,18 @@ def loophandler(joy):
                 if buttons[BUTTON_B] and not joy.get_button(BUTTON_B):
                     buttons[BUTTON_B] = False
                     pyautogui.keyUp('space')  # todo
+                if buttons[BUTTON_C] and not joy.get_button(BUTTON_C):
+                    buttons[BUTTON_C] = False
+                    pyautogui.keyUp('r')  # todo
+                if buttons[BUTTON_D] and not joy.get_button(BUTTON_D):
+                    buttons[BUTTON_D] = False
+                    pyautogui.keyUp('q')  # todo
+                if buttons[BUTTON_E] and not joy.get_button(BUTTON_E):
+                    buttons[BUTTON_E] = False
+                    pyautogui.keyUp('f')  # todo
+                if buttons[BUTTON_F] and not joy.get_button(BUTTON_F):
+                    buttons[BUTTON_F] = False
+                    pyautogui.keyUp('z')  # todo
 
 
 if __name__ == '__main__':
@@ -65,5 +95,5 @@ if __name__ == '__main__':
         print('Enabled joystick: ' + j.get_name())
         loophandler(j)
     except pygame.error:
-        print ('No joystick found. Terminated.')
+        print('No joystick found. Terminated.')
         exit()
