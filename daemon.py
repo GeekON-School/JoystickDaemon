@@ -38,7 +38,7 @@ class AxisKey:
         self.last_active = 0  # time.monotonic()
         self.key = key
 
-    def update(self, event):
+    def update(self):
         value = self.joystick.get_axis(self.axis)
         if (self.positive and value > TILT_THRESHOLD) or (not self.positive and value < -TILT_THRESHOLD):
             self.last_active = time.monotonic()
@@ -63,21 +63,28 @@ def main():
     print("Joysticks: {}".format(pygame.joystick.get_count()))
 
     buttons = []
+    axes = []
 
     for joystick_config in config:
         joystick = pygame.joystick.Joystick(joystick_config['id'])
+        if not joystick.get_init():
+            joystick.init()
         for axis_config in joystick_config['axes']:
             if 'positive' in axis_config:
-                buttons.append(AxisKey(joystick, axis_config['id'], True, axis_config['positive']))
+                axes.append(AxisKey(joystick, axis_config['id'], True, axis_config['positive']))
             if 'negative' in axis_config:
-                buttons.append(AxisKey(joystick, axis_config['id'], False, axis_config['negative']))
+                axes.append(AxisKey(joystick, axis_config['id'], False, axis_config['negative']))
         for button_config in joystick_config['buttons']:
             buttons.append(ButtonKey(joystick, button_config['id'], button_config['key']))
 
     while True:
         for e in pygame.event.get():
-            for button in buttons:
-                button.update(e.type)
+            if e.type in [pygame.locals.JOYBUTTONDOWN, pygame.locals.JOYBUTTONUP]:
+                for button in buttons:
+                    button.update(e.type)
+            elif e.type == pygame.locals.JOYAXISMOTION:
+                for axis in axes:
+                    axis.update()
         time.sleep(0.01)
 
 
