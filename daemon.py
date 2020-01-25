@@ -35,21 +35,20 @@ class AxisKey:
         self.axis = axis
         self.positive = positive
         self.pressed = False
-        self.last_active = 0  # time.monotonic()
+        self.last_active = 0  # time.time()
         self.key = key
 
     def update(self):
         value = self.joystick.get_axis(self.axis)
         if (self.positive and value > TILT_THRESHOLD) or (not self.positive and value < -TILT_THRESHOLD):
-            self.last_active = time.monotonic()
+            self.last_active = time.time()
             if not self.pressed:
                 pyautogui.keyDown(self.key)
                 self.pressed = True
         else:
-            if time.monotonic() - self.last_active > RELEASE_DELAY:
-                if self.pressed:
-                    self.pressed = False
-                    pyautogui.keyUp(self.key)
+            if self.pressed and time.time() - self.last_active > RELEASE_DELAY:
+                self.pressed = False
+                pyautogui.keyUp(self.key)
 
 
 def main():
