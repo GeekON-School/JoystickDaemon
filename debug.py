@@ -16,11 +16,14 @@ def main():
         print("  Buttons: {}".format(j.get_numbuttons()))
 
     while True:
-        for i, j in enumerate(joysticks):
-            print("j{} ".format(i) + "".join("{: 3}".format(1 if j.get_button(x) else 0)
-                                             for x in range(j.get_numbuttons())))
-            print("   " + "".join("{: 3}".format(x) for x in range(j.get_numbuttons())))
-        time.sleep(1)
+        for e in pygame.event.get():  # iterate over event stack
+            if e.type == pygame.locals.JOYBUTTONDOWN:
+                print("KeyDown:")
+                for jid, j in enumerate(joysticks):
+                    for bid in range(j.get_numbuttons()):
+                        if j.get_button(bid):
+                            print("  Joystick {}, Button {}".format(jid, bid))
+        time.sleep(0.5)
 
 
 if __name__ == '__main__':
