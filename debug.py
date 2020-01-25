@@ -24,6 +24,9 @@ def main():
                     for bid in range(j.get_numbuttons()):
                         if j.get_button(bid):
                             print("  Joystick {}, Button {}".format(jid, bid))
+            elif e.type == pygame.locals.JOYAXISMOTION:
+                for jid, j in enumerate(joysticks):
+                    print("  Joystick {}".format(jid, tuple(j.get_axis(ax) for ax in range(j.get_numaxes()))))
         time.sleep(0.5)
 
 
