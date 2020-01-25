@@ -19,7 +19,7 @@ def main():
         for i, j in enumerate(joysticks):
             print("j{} ".format(i) + "".join("{: 3}".format('#' if j.get_button(x) else 'O')
                                              for x in range(j.num_buttons())))
-            print("   " + "".join("{: 3}".format(x) for x in range(j.num_buttons())))
+            print("   " + "".join("{: 3}".format(x) for x in range(j.get_numbuttons())))
         time.sleep(1)
 
 
