@@ -1,0 +1,112 @@
+[
+    {
+        "id": 0,
+        "axes": [
+            {
+                "id": 0,
+                "positive": "d",
+                "negative": "a"
+            },
+            {
+                "id": 1,
+                "positive": "s",
+                "negative": "w"
+            }
+        ],
+        "buttons": [
+            {
+                "id": 0,
+                "key": "r"
+            },
+            {
+                "id": 1,
+                "key": "4"
+            },
+            {
+                "id": 2,
+                "key": "t"
+            },
+            {
+                "id": 3,
+                "key": "5"
+            },
+            {
+                "id": 4,
+                "key": "y"
+            },
+            {
+                "id": 5,
+                "key": "6"
+            },
+            {
+                "id": 6,
+                "key": "y"
+            },
+            {
+                "id": 7,
+                "key": "7"
+            },
+            {
+                "id": 8,
+                "key": "1"
+            },
+            {
+                "id": 9,
+                "key": "esc"
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "axes": [
+            {
+                "axis": 0,
+                "positive": "right",
+                "negative": "left"
+            },
+            {
+                "axis": 1,
+                "positive": "down",
+                "negative": "up"
+            }
+        ],
+        "buttons": [
+            {
+                "id": 0,
+                "key": "m"
+            },
+            {
+                "id": 1,
+                "key": "k"
+            },
+            {
+                "id": 2,
+                "key": ","
+            },
+            {
+                "id": 3,
+                "key": "l"
+            },
+            {
+                "id": 4,
+                "key": "."
+            },
+            {
+                "id": 5,
+                "key": ";"
+            },
+            {
+                "id": 6,
+                "key": "/"
+            },
+            {
+                "id": 7,
+                "key": "'"
+            },
+            {
+                "id": 8,
+                "key": "2"
+            }
+        ]
+    }
+]
