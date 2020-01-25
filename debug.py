@@ -1,6 +1,7 @@
+import time
 import pygame
 import pyautogui
-import time
+from pygame import locals
 
 
 def main():
