@@ -60,12 +60,12 @@
         "id": 1,
         "axes": [
             {
-                "axis": 0,
+                "id": 0,
                 "positive": "right",
                 "negative": "left"
             },
             {
-                "axis": 1,
+                "id": 1,
                 "positive": "down",
                 "negative": "up"
             }
